@@ -54,6 +54,8 @@ def compare_native(old = nil, recent = nil)
   [old,recent].each { |file|
     return false unless file && File.exist?(file) && File.readable?(file)
   }
+  # Подход работает только на платформах *nix
+  return false if RUBY_PLATFORM.downcase.include?("mswin")
   added, removed = [], []
   # Результат вызова diff на оба файла выводится в массив Array
   diff = %x(diff -wBE --speed-large-files #{old} #{recent}).split("\n")

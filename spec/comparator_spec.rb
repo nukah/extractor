@@ -16,7 +16,7 @@ describe "Comparator" do
 
     it "should return false on wrong input" do
       result = compare_native("/random/wrong")
-      expect(compare_native).to be_false
+      expect(result).to be_false
     end
 
     it "should return 0 when files are identical" do
@@ -35,7 +35,7 @@ describe "Comparator" do
 
     it "should return false on wrong input" do
       result = compare("/random/wrong")
-      expect(compare_native).to be_false
+      expect(result).to be_false
     end
 
     it "should return 0 when files are identical" do
