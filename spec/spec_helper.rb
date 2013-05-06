@@ -7,7 +7,10 @@ end
 
 class ContentGenerator
   def initialize
-    @base = %x(find / -type f 2>/dev/null | head -n 5000 | perl -MList::Util=shuffle -e'print shuffle<>').split("\n")[2000..4000]
+    @base = case RUBY_PLATFORM.downcase
+      when "mswin" then %x(dir C: /s /b).split("\n")[1000..2000]
+      else %x(find / -type f 2>/dev/null | head -n 5000 | perl -MList::Util=shuffle -e'print shuffle<>').split("\n")[2000..4000]
+    end
   end
 
   def changed
